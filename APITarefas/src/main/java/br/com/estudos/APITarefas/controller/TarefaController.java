@@ -4,7 +4,9 @@ import br.com.estudos.APITarefas.domain.dto.request.ObterTarefaRequest;
 import br.com.estudos.APITarefas.domain.dto.response.ObterTarefaResponse;
 import br.com.estudos.APITarefas.domain.entities.Tarefa;
 import br.com.estudos.APITarefas.service.TarefaService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.apache.coyote.Response;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +49,14 @@ public class TarefaController {
         return ResponseEntity.status(HttpStatus.OK).body(tarefaResponse);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ObterTarefaResponse> atualizarTarefa(@PathVariable String id, @Valid @RequestBody ObterTarefaRequest dto) {
+        Tarefa tarefa = service.atualizarTarefa(id, dto);
+
+        ObterTarefaResponse tarefaResponse = mapper.map(tarefa, ObterTarefaResponse.class);
+
+        return ResponseEntity.status(HttpStatus.OK).body(tarefaResponse);
+    }
 
 
 }
