@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Tarefa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id_tarefa")
     private String idTarefa;
 
