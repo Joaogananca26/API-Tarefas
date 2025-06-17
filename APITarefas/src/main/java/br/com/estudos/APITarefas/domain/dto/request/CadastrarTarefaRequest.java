@@ -11,9 +11,6 @@ import lombok.NoArgsConstructor;
 public class CadastrarTarefaRequest {
 
     @NotBlank
-    private String idTarefa;
-
-    @NotBlank
     private String nomeTarefa;
 
     @NotBlank

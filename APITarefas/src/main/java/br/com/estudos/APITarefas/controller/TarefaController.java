@@ -8,10 +8,9 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/tarefa")
@@ -29,6 +28,14 @@ public class TarefaController {
         CadastrarTarefaResponse response = mapper.map(tarefaSalva, CadastrarTarefaResponse.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping
+    public List<CadastrarTarefaResponse> listarTarefas() {
+        List<Tarefa> tarefas = service.listarTarefas();
+        return tarefas.stream()
+                .map(tarefa -> mapper.map(tarefa, CadastrarTarefaResponse.class))
+                .toList();
     }
 
 }
