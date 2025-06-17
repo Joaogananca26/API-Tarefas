@@ -58,5 +58,12 @@ public class TarefaController {
         return ResponseEntity.status(HttpStatus.OK).body(tarefaResponse);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarTarefa(@PathVariable String id) {
+        service.deletarTarefaPorId(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
