@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CadastrarTarefaResponse {
+public class ObterTarefaResponse {
 
     private String idTarefa;
     private String nomeTarefa;

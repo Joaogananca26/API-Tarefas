@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CadastrarTarefaRequest {
+public class ObterTarefaRequest {
 
     @NotBlank
     private String nomeTarefa;

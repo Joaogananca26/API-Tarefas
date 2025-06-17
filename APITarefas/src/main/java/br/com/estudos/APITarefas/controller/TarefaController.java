@@ -1,7 +1,7 @@
 package br.com.estudos.APITarefas.controller;
 
-import br.com.estudos.APITarefas.domain.dto.request.CadastrarTarefaRequest;
-import br.com.estudos.APITarefas.domain.dto.response.CadastrarTarefaResponse;
+import br.com.estudos.APITarefas.domain.dto.request.ObterTarefaRequest;
+import br.com.estudos.APITarefas.domain.dto.response.ObterTarefaResponse;
 import br.com.estudos.APITarefas.domain.entities.Tarefa;
 import br.com.estudos.APITarefas.service.TarefaService;
 import lombok.AllArgsConstructor;
@@ -21,21 +21,32 @@ public class TarefaController {
     private ModelMapper mapper;
 
     @PostMapping("/Adicionar")
-    public ResponseEntity<CadastrarTarefaResponse> cadastrarTarefa(@RequestBody CadastrarTarefaRequest dto) {
+    public ResponseEntity<ObterTarefaResponse> cadastrarTarefa(@RequestBody ObterTarefaRequest dto) {
         Tarefa tarefa = mapper.map(dto, Tarefa.class);
         Tarefa tarefaSalva = service.cadastrarTarefa(tarefa);
 
-        CadastrarTarefaResponse response = mapper.map(tarefaSalva, CadastrarTarefaResponse.class);
+        ObterTarefaResponse response = mapper.map(tarefaSalva, ObterTarefaResponse.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping
-    public List<CadastrarTarefaResponse> listarTarefas() {
+    public List<ObterTarefaResponse> listarTarefas() {
         List<Tarefa> tarefas = service.listarTarefas();
         return tarefas.stream()
-                .map(tarefa -> mapper.map(tarefa, CadastrarTarefaResponse.class))
+                .map(tarefa -> mapper.map(tarefa, ObterTarefaResponse.class))
                 .toList();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ObterTarefaResponse> listarTarefaPorId(@PathVariable String id) {
+        Tarefa tarefa = service.listarTarefaPorId(id);
+
+        ObterTarefaResponse tarefaResponse = mapper.map(tarefa, ObterTarefaResponse.class);
+
+        return ResponseEntity.status(HttpStatus.OK).body(tarefaResponse);
+    }
+
+
 
 }
