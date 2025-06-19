@@ -6,7 +6,6 @@ import br.com.estudos.APITarefas.domain.entities.Tarefa;
 import br.com.estudos.APITarefas.service.TarefaService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.Response;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +31,7 @@ public class TarefaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public List<ObterTarefaResponse> listarTarefas() {
         List<Tarefa> tarefas = service.listarTarefas();
         return tarefas.stream()
@@ -40,7 +39,7 @@ public class TarefaController {
                 .toList();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/listarId/{id}")
     public ResponseEntity<ObterTarefaResponse> listarTarefaPorId(@PathVariable String id) {
         Tarefa tarefa = service.listarTarefaPorId(id);
 
@@ -49,7 +48,7 @@ public class TarefaController {
         return ResponseEntity.status(HttpStatus.OK).body(tarefaResponse);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/atualizar/{id}")
     public ResponseEntity<ObterTarefaResponse> atualizarTarefa(@PathVariable String id, @Valid @RequestBody ObterTarefaRequest dto) {
         Tarefa tarefa = service.atualizarTarefa(id, dto);
 
@@ -58,7 +57,7 @@ public class TarefaController {
         return ResponseEntity.status(HttpStatus.OK).body(tarefaResponse);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletarTarefa(@PathVariable String id) {
         service.deletarTarefaPorId(id);
 
