@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "TB_Tarefas")
 @Data
@@ -28,4 +31,10 @@ public class Tarefa {
 
     @Column(name = "prioridade_tarefa")
     private String prioridadeTarefa;
+
+    @Column(name = "data_tarefa")
+    private LocalDateTime dataCriacaoTarefa;
+
+    @Column(name = "prazo_tarefa")
+    private LocalDate prazoTarefa;
 }

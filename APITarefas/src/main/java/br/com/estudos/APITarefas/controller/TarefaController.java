@@ -7,10 +7,12 @@ import br.com.estudos.APITarefas.service.TarefaService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -24,9 +26,9 @@ public class TarefaController {
     @PostMapping("/Adicionar")
     public ResponseEntity<ObterTarefaResponse> cadastrarTarefa(@RequestBody ObterTarefaRequest dto) {
         Tarefa tarefa = mapper.map(dto, Tarefa.class);
-        Tarefa tarefaSalva = service.cadastrarTarefa(tarefa);
+        LocalDate dataTarefa = LocalDate.of(dto.getAno(), dto.getMes(), dto.getDia());
 
-        ObterTarefaResponse response = mapper.map(tarefaSalva, ObterTarefaResponse.class);
+        ObterTarefaResponse response = mapper.map(service.cadastrarTarefa(tarefa, dataTarefa), ObterTarefaResponse.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

@@ -1,6 +1,7 @@
 package br.com.estudos.APITarefas.domain.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,12 +23,12 @@ public class ObterTarefaRequest {
     @NotBlank
     private String prioridadeTarefa;
 
-    @NotBlank
+    @NotNull
     private int dia;
 
-    @NotBlank
+    @NotNull
     private int mes;
 
-    @NotBlank
+    @NotNull
     private int ano;
 }

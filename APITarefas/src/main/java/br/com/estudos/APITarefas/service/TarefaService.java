@@ -9,6 +9,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -17,7 +19,9 @@ public class TarefaService {
 
     private TarefaRepository repository;
 
-    public Tarefa cadastrarTarefa(Tarefa tarefa) {
+    public Tarefa cadastrarTarefa(Tarefa tarefa, LocalDate prazoTarefa) {
+        tarefa.setPrazoTarefa(prazoTarefa);
+        tarefa.setDataCriacaoTarefa(LocalDateTime.now());
         return repository.save(tarefa);
     }
 
