@@ -22,4 +22,12 @@ public class ObterTarefaRequest {
     @NotBlank
     private String prioridadeTarefa;
 
+    @NotBlank
+    private int dia;
+
+    @NotBlank
+    private int mes;
+
+    @NotBlank
+    private int ano;
 }

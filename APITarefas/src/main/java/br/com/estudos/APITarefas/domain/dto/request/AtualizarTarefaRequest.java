@@ -22,4 +22,13 @@ public class AtualizarTarefaRequest {
 
     @NotBlank
     private String prioridadeTarefa;
+
+    @NotBlank
+    private int dia;
+
+    @NotBlank
+    private int mes;
+
+    @NotBlank
+    private int ano;
 }
